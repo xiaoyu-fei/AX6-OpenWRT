@@ -53,3 +53,8 @@ rm -rf feeds/luci/applications/luci-app-argon-config
 
 #修改主机名
 #sed -i "s/hostname='ImmortalWrt'/hostname='Redmi-AX6'/g" package/base-files/files/bin/config_generate
+
+# Copy dae related packages
+cp -rf $GITHUB_WORKSPACE/package/dae ./package/
+cp -rf $GITHUB_WORKSPACE/package/luci-app-dae ./package/
+cp -rf $GITHUB_WORKSPACE/package/v2ray-geodata ./package/
