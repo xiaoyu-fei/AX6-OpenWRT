@@ -124,6 +124,14 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
+    - name: Load custom config
+      run: |
+        [ -e $FILES ] && mv $FILES openwrt/files
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        chmod +x $DIY_SH
+        cd openwrt
+        $GITHUB_WORKSPACE/$DIY_SH
+
     - name: Configure daed kernel options
       working-directory: ./openwrt
       run: |
@@ -141,14 +149,6 @@ jobs:
         CONFIG_ARM64_BRBE=n
         CONFIG_KERNEL_WERROR=n
         EOF
-
-    - name: Load custom config
-      run: |
-        [ -e $FILES ] && mv $FILES openwrt/files
-        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x $DIY_SH
-        cd openwrt
-        $GITHUB_WORKSPACE/$DIY_SH
 
     # - name: SSH connect to Actions
       # uses: P3TERX/ssh2actions@main
