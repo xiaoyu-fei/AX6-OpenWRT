@@ -139,6 +139,7 @@ jobs:
         CONFIG_KERNEL_XDP_SOCKETS=y
         CONFIG_PACKAGE_kmod-xdp-sockets-diag=y
         CONFIG_ARM64_BRBE=n
+        CONFIG_KERNEL_WERROR=n
         EOF
 
     - name: Load custom config
